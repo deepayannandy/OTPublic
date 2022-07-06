@@ -13,7 +13,7 @@ def employee(emp):
     if podetails == None:
         return render_template('DataNotFound.html', key="Page under Construction")
     else:
-        return render_template('po.html', po=podetails)
+        return render_template('employee.html')
 @app.route('/po/<ponum>')
 def po(ponum):
     print(ponum)

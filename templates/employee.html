@@ -19,42 +19,45 @@
       </a>
     </nav>
         <div class="jumbotron">
-      <h1 class="display-4 text-success">Deepayan Nandy</h1>
+      <h1 class="display-4 text-success">{{user["fullname"]}}</h1>
       <p class="lead">Registered User of OTS Pocket</p>
             <div class="row pl-2">
                 <div class=" p-2">
-                     Email: <h4 class="text-success">deepayan.622@gmail.com</h4>
+                     Email: <h4 class="text-success">{{user["email"]}}</h4>
                 </div>
                 <div class=" p-2">
-                     Phone: <h4 class="text-success">7384213622</h4>
+                     Phone: <h4 class="text-success">{{user["mobileNo"]}}</h4>
                 </div>
                 <div class=" p-2">
-                     SSN: <h4 class="text-success">123XXXX89</h4>
+                     SSN: <h4 class="text-success">{{user["ssn"]}}</h4>
                 </div>
                 <div class=" p-2">
-                     Assigned Project: <h4 class="text-success">Po111</h4>
+                     Assigned Project: <h4 class="text-success">{{user["assignedprojects"]}}</h4>
                 </div>
             </div>
             <hr class="my-4">
+            <div class="row pl-2">
+                <div class=" p-2">
+                     Start Day: <h5 class="text-success">{{card[1][0]}}</h5>
+                </div>
+                <div class=" p-2">
+                     End Day: <h5 class="text-success">{{card[1][6]}}</h5>
+                </div>
+                <div class=" p-2">
+                     Week: <h5 class="text-success">{{card[3]}}</h5>
+                </div>
+            </div>
 <table class="table table-light table-bordered text-center">
   <thead class="thead">
     <tr class="bg-success">
-      <th scope="col" colspan="4">Sun</th>
-      <th scope="col" colspan="4">Mon</th>
-      <th scope="col" colspan="4">Tue</th>
-         <th scope="col" colspan="4">Wed</th>
-         <th scope="col" colspan="4">Thr</th>
-         <th scope="col" colspan="4">Fri</th>
-         <th scope="col" colspan="4">Sat</th>
+        {% for day in card[0] %}
+      <th scope="col" colspan="4">{{day}}</th>
+        {% endfor %}
     </tr>
   <tr>
-      <th scope="col" colspan="4">3/7</th>
-      <th scope="col" colspan="4">4/7</th>
-      <th scope="col" colspan="4">5/7</th>
-         <th scope="col" colspan="4">6/7</th>
-         <th scope="col" colspan="4">7/7</th>
-         <th scope="col" colspan="4">8/7</th>
-         <th scope="col" colspan="4">9/7</th>
+      {% for weekday in card[1] %}
+      <th scope="col" colspan="4">{{weekday}}</th>
+       {% endfor %}
     </tr>
   <tr>
       <th scope="col" colspan="2">DS</th>
@@ -73,68 +76,47 @@
       <th scope="col" colspan="2">NS</th>
     </tr>
   <tr>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
-      <th scope="col" >UH</th>
-      <th scope="col" >EH</th>
+
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
+      <th scope="col" >ST</th>
+      <th scope="col" >OT</th>
 
 
     </tr>
   </thead>
   <tbody>
     <tr>
-      <th scope="row">8</th>
-        <th scope="row">1</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">7</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">8</th>
-        <th scope="row">2</th>
-        <th scope="row">8</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">6</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">8</th>
-        <th scope="row">4</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">4</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
-        <th scope="row">0</th>
+        {% for timecard in card[2] %}
+        <th scope="row">{{timecard[0]}}</th>
+        <th scope="row">{{timecard[1]}}</th>
+        <th scope="row">{{timecard[2]}}</th>
+        <th scope="row">{{timecard[3]}}</th>
+      {% endfor %}
     </tr>
 
   </tbody>
@@ -148,10 +130,10 @@
                 NS= Night Shift</li>
   </div>
             <div class="d-flex text-muted pl-4"><li>
-                UH= Usual Hours</li>
+                ST= Standard Time</li>
   </div>
             <div class="d-flex text-muted pl-4"><li>
-                EH= Extra Hours</li>
+                OT= Over Time</li>
             </div>
             </div>
             </ul>

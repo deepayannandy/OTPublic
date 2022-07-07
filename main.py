@@ -9,11 +9,15 @@ def home():
 @app.route('/employee/<emp>')
 def employee(emp):
     print(emp)
-    podetails = otsdb.getPoDetils(emp)
-    if podetails == None:
-        return render_template('DataNotFound.html', key="Page under Construction")
+    unique=emp.split("(")[0]
+    res = otsdb.db.collection("users").where("uniqueid", "==", unique).get()
+    if len(res)==0:
+        return render_template('DataNotFound.html', key="User data not available")
     else:
-        return render_template('employee.html')
+        user = res[0].to_dict()
+        timecard= otsdb.getEmpTimesheet(user["uid"])
+        print(timecard)
+        return render_template('employee.html',user=user,card=timecard)
 @app.route('/po/<ponum>')
 def po(ponum):
     print(ponum)

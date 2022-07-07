@@ -36,4 +36,6 @@ def wo(wonum):
         return render_template('wo.html', wo=wodetails)
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=80)
+    from waitress import serve
+    # app.run(debug=False, host='0.0.0.0', port=80)
+    serve(app, host="0.0.0.0", port=80)

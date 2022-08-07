@@ -52,6 +52,14 @@ def wo(wonum):
         return render_template('DataNotFound.html', key=wonum)
     else:
         return render_template('wo.html', wo=wodetails)
+@app.route('/invoice/<wonum>')
+def invoice(wonum):
+    print(wonum)
+    wodetails = otsdb.getWoDetils(wonum)
+    if wodetails == None:
+        return render_template('DataNotFound.html', key=wonum)
+    else:
+        return render_template('invoice.html', wo=wodetails)
 
 if __name__ == '__main__':
     from waitress import serve

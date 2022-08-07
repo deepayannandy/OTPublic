@@ -1,5 +1,9 @@
 from flask import Flask, render_template, request
 import otsdb
+from datetime import date
+import random
+
+
 
 app=Flask(__name__)
 
@@ -59,7 +63,39 @@ def invoice(wonum):
     if wodetails == None:
         return render_template('DataNotFound.html', key=wonum)
     else:
-        return render_template('invoice.html', wo=wodetails)
+        stc=95
+        otc=142.5
+        wodet=otsdb.getWoDetils(wonum)
+        proj=otsdb.getPoDetils(wodet["po"])
+        today = date.today()
+        d1 = today.strftime("%m/%d/%Y")
+        listOfEmp=wodet["assignedEmployee"]
+        print(listOfEmp)
+        empdata=[]
+        for emp in listOfEmp:
+            res = otsdb.db.collection("users").where("uniqueid", "==", emp.split("(")[0]).get()
+            if len(res) != 0:
+                empdata.append(res[0].to_dict())
+            else:
+                pass
+        timecardData=[]
+        total = 0
+        tcInvoice = []
+        for emp in empdata:
+            res = otsdb.db.collection(emp["uid"]+"-timecards").where("wo", "==", wodet["po"]+"~"+wonum).get()
+            for x in range(0, len(res)):
+                tc=res[x].to_dict()
+                if tc['st'] > 0:
+                    tcInvoice.append({"date": tc['date'], "item": proj['jobDescriptions'], "desc":emp["fullname"]+" (ST)","qnt":tc['st'],'rate':stc,"total":stc*tc['st']})
+                    total+=stc*tc['st']
+                if tc['ot'] > 0:
+                    tcInvoice.append({"date": tc['date'], "item": proj['jobDescriptions'], "desc":emp["fullname"]+" (OT)","qnt":tc['ot'],'rate':otc,"total":otc*tc['ot']})
+                    total+=otc*tc['ot']
+        print(tcInvoice,"\n",total)
+
+
+
+        return render_template('invoice.html', wo=wodet["wo"], po=wodet["po"],proj=proj,date=d1,inv=random.randint(0, 99),invoice=tcInvoice,total=total)
 
 if __name__ == '__main__':
     from waitress import serve

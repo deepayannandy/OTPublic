@@ -14,8 +14,8 @@
                         </div>
 
                         <div class="col-md-6 text-right">
-                            <p class="font-weight-bold mb-1">Invoice #6622</p>
-                            <p class="text-muted">Due to: 8 Aug, 2022</p>
+                            <p class="font-weight-bold mb-1">Invoice #{{inv}}</p>
+                            <p class="text-muted">Due to: {{date}}</p>
                         </div>
                     </div>
 
@@ -24,15 +24,15 @@
                     <div class="row pb-5 p-5">
                         <div class="col-md-6">
                             <p class="font-weight-bold mb-4">Bill To</p>
-                            <p class="mb-1">INEOS Houston</p>
-                            <p class="mb-1">South Shore, League City, Houston, Texas</p>
-                            <p class="mb-1"><span class="text-muted">Job Description:</span> Heat Exchanger tube inspection</p>
+                            <p class="mb-1">{{proj['clientName']}}</p>
+                            <p class="mb-1"><span class="text-muted">Address: </span>{{proj['address']}}</p>
+                            <p class="mb-1"><span class="text-muted">Job Description: </span> {{proj['jobDescriptions']}}</p>
                         </div>
 
                         <div class="col-md-6 text-right">
                             <p class="font-weight-bold mb-4">Job Details</p>
-                            <p class="mb-1"><span class="text-muted">PO Number: </span> INEOS-ECT63</p>
-                            <p class="mb-1"><span class="text-muted">WO Number: </span> WO_INEOS-ECT63_01</p>
+                            <p class="mb-1"><span class="text-muted">PO Number: </span> {{po}}</p>
+                            <p class="mb-1"><span class="text-muted">WO Number: </span> {{wo}}</p>
                         </div>
                     </div>
 
@@ -50,54 +50,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                {% for inv in invoice %}
                                     <tr>
-                                        <td>6/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (ST)</td>
-                                        <td>7.5</td>
-                                        <td>$95</td>
-                                        <td>$712.5</td>
+                                        <td>{{inv['date']}}</td>
+                                        <td>{{inv['item']}}</td>
+                                        <td>{{inv['desc']}}</td>
+                                        <td>{{inv['qnt']}}</td>
+                                        <td>${{inv['rate']}}</td>
+                                        <td>${{inv['total']}}</td>
                                     </tr>
-                                   <tr>
-                                        <td>6/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (OT)</td>
-                                        <td>3.5</td>
-                                        <td>$142.50</td>
-                                        <td>$498.75</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (ST)</td>
-                                        <td>8</td>
-                                        <td>$95</td>
-                                        <td>$760</td>
-                                    </tr>
-                                <tr>
-                                        <td>7/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (OT)</td>
-                                        <td>1.5</td>
-                                        <td>$142.5</td>
-                                        <td>$213.75</td>
-                                    </tr>
-                                <tr>
-                                        <td>8/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (ST)</td>
-                                        <td>8</td>
-                                        <td>$95</td>
-                                        <td>$760</td>
-                                    </tr>
-                                <tr>
-                                        <td>8/8/22</td>
-                                        <td>Heat Exchanger tube inspection</td>
-                                        <td>Jeff Hartman (OT)</td>
-                                        <td>4</td>
-                                        <td>$142.5</td>
-                                        <td>$570</td>
-                                    </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -106,7 +68,7 @@
                     <div class="d-flex flex-row-reverse bg-dark text-white p-4">
                         <div class="py-3 px-5 text-right">
                             <div class="mb-2">Total</div>
-                            <div class="h2 font-weight-light">$3,515</div>
+                            <div class="h2 font-weight-light">${{total}}</div>
                         </div>
                     </div>
                 </div>
